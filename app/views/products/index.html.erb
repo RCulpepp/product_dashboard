@@ -1,0 +1,41 @@
+<div class='pure-g'>
+	<h2 class='pure-u-1'>Listing Products</h2>
+	<table class="pure-table pure-table-horizontal pure-u-2-5">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Description</td>
+				<td>Price</td>
+				<td>Category</td>
+				<td>Action</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			<% @products.each do |product| %>
+				<td><%= product['name']%></td>
+				<td><%= product['description'] %></td>
+				<td><%= product['price'] %></td>
+				<td><%= product.category.name %></td>
+				<td>
+					<a class='button-xsmall pure-button' href='/products/<%= product.id %>'>
+						Show
+					</a>
+					<a class='button-xsmall pure-button' href='/products/<%= product.id %>/edit'>
+						Edit
+					</a>
+					<form action='/products/<%= product.id %>' method="POST">
+						<input type="hidden" name='authenticity_token' value='<%= form_authenticity_token %>'>	
+						<input type="hidden" name="_method" value="delete">
+						<button type='submit' class='button-xsmall pure-button'>
+							Destroy
+						</button>
+					</form>	
+				</td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+	<a class='pure-button pure-button-primary pure-u-2-5' href='/products/new'>New Product</a>
+
+</div>

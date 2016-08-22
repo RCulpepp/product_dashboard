@@ -1,0 +1,35 @@
+<div class='pure-g'>
+	<table class='pure-table pure-u-1'>
+		<tr>
+			<td>Name</td>
+			<td><%= @product[:name] %></td>
+		</tr>
+		<tr>
+			<td>Description</td>
+			<td><%= @product[:description] %></td>
+		</tr>
+		<tr>
+			<td>Price</td>
+			<td><%= @product[:price] %></td>
+		</tr>
+		<tr>
+			<td>Category</td>
+			<td><%= @category %></td>
+		</tr>
+	</table>
+	<a href='/products/<%= @product[:id]%>/edit' class='pure-button pure-button-default pure-u-1-6'>Edit</a>
+	<a href='/products' class='button-secondary pure-button pure-u-1-6'>Back</a>
+	<h4 class='pure-u-1'>New Comment</h4>
+	<form action="/comments/<%= @product[:id]%>" method='POST'>
+		<input type="hidden" name='authenticity_token' value='<%= form_authenticity_token %>'>	
+		<textarea class='pure-u-4-5' name="comment[content]"></textarea>
+		<input type="submit" class="pure-button pure-button-primary">
+	</form>
+	<div class='pure-u-1'>
+		<% @product.comments.each do |comment| %>
+			<p><%= comment[:content] %> - <%= comment[:created_at].strftime("%m:%M")%></p>
+		<% end %>
+	</div>
+	
+
+</div>

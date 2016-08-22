@@ -1,0 +1,20 @@
+<div class='pure-g'>
+	<h1 class='pure-u-1'>New Product</h1>
+	<form class='pure-form pure-form-stacked pure-u-1' action='/products/' method='POST'>
+		<input type="hidden" name='authenticity_token' value='<%= form_authenticity_token %>'>
+		<label for="category">Category</label>
+		<select name="product[category_id]">
+		<% @categories.each do |category| %>
+			<option value="<%= category[:id] %>"><%= category[:name]%></option>
+		<% end %>
+		</select>
+		<label for="name">Name</label>
+		<input type='text' name="product[name]" class='pure-input-1-2'>
+		<label for="description">Description</label>
+		<textarea name="product[description]" class='pure-input-1-2'></textarea>
+		<label for="price">Price</label>
+		<input type='text' name="product[price]" class='pure-input-1-2'>
+		<input type="submit" class='pure-button pure-button-primary' value='create'>
+	</form>
+	<a href='/products' class='button-secondary pure-button pure-u-1-12'>Back</a>
+</div>

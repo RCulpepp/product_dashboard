@@ -1,0 +1,22 @@
+<div class='pure-g'>
+	<h1 class='pure-u-1'>Edit Product</h1>
+	<form class='pure-form pure-form-stacked pure-u-1' action='/products/<%= @product[:id] %>' method='POST'>
+		<input type="hidden" name='authenticity_token' value='<%= form_authenticity_token %>'>	
+		<label for="category">Category</label>
+		<select name="product[category]">
+		<% @categories.each do |category| %>
+			<option value="<%= category[:id] %>"><%= category[:name]%></option>
+		<% end %>
+		</select>
+		<label for="name">Name</label>
+		<input type='text' name="product[name]" class='pure-input-1-2' value="<%= @product[:name] %>">
+		<label for="description">Description</label>
+		<textarea name="product[description]" class='pure-input-1-2'><%= @product[:description] %></textarea>
+		<label for="price">Price</label>
+		<input type='text' name="product[price]" class='pure-input-1-2' value="<%= @product[:price] %>">
+		<input type="submit" class='pure-button pure-button-primary' value='Update'>
+		<input type='hidden' name='_method' value='patch'>
+	</form>
+	<a href='/products' class='button-secondary pure-button pure-u-1-6'>Back</a>
+	<a href='/products/<%= @product[:id] %>' class='button-secondary pure-button pure-u-1-6'>Show</a>
+</div>

@@ -1,0 +1,16 @@
+<div class='pure-g'>
+	<table class='pure-table pure-table-horizontal pure-u-2-5'>
+		<thead>
+			<tr>
+				<td>Comment</td>
+				<td>On Product</td>
+			</tr>
+		</thead>
+		<% @comments.each do |comment| %>
+		<tr>
+			<td><%= comment[:content] %></td>
+			<td><%= comment.product.name %></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
